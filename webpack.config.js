@@ -47,7 +47,20 @@ module.exports = {
                 test: /\.js/,
                 loader: 'babel-loader',
                 exclude: /node_modules/
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[ext]'
+                }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: false,
+        overlay: true,
+        open: false
     }
 };
