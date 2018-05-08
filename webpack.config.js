@@ -3,7 +3,7 @@ let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/lib/index.js',
+    entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -15,6 +15,30 @@ module.exports = {
     ],
     module: {
         rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].css',
+                            outputPath: '/css'
+                        }
+                    },
+                    {
+                        loader: 'extract-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            minimize: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
+            },
             {
                 test: /\.pug$/,
                 loaders: 'pug-loader'
