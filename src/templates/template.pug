@@ -6,8 +6,18 @@ html(lang=en)
         meta(content="width=device-width, initial-scale=1" name="viewport")
         meta(http-equiv="X-UA-Compatible" content="ie=edge")
         title Friends Filter
-        link(rel="stylesheet" href="css/main.css")
+        link(rel="stylesheet" href="css/main.css" type="text/css")
     body
         .wrapper
-            .container
+            .container.friends
+                header.friends__header
+                    h1.friends__title Другофильтр
+                main.friends__main
+                    .friends__left
+                        .friends__friend Павел
+                        .friends__friend Снежок
+                        .friends__friend Воля
+                    .friends__right
+                        .friends__friend Справа
+                footer.friends__footer
     script(src="bundle.js")
