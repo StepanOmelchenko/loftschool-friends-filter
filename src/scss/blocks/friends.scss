@@ -1,0 +1,137 @@
+.friends{
+    display: flex;
+    flex-direction: column;
+
+    &__header{
+        width: 100%;
+        height: 45px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #ff8663;
+        padding-top: 15px;
+    }
+
+    &__title{
+        font-size: 16px;
+        margin-left: 14px;
+        color: #fff;
+    }
+
+    &__taskbar-closebtn{
+        margin-right: 14px;
+
+        &:before,
+        &:after{
+            background-color: #fff;
+        }
+    }
+
+    &__taskbar{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 45px;
+        background-color: #f0f0f0;
+        padding: 10px 15px 0 10px;
+    }
+
+    &__taskbar-input{
+        width: 285px;
+        height: 26px;
+        border-radius: 10px;
+        padding: 7px;
+        font-size: 12px;
+        font-weight: 300;
+        color: #9f9f9f;
+    }
+
+    &__main{
+        width: 100%;
+        flex: 1;
+        display: flex;
+    }
+
+    &__left,
+    &__right{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        padding-left: 15px;
+    }
+
+    &__left{
+        border-right: 1px solid #f0f0f0;
+    }
+
+    &__right{
+        border-left: 1px solid #f0f0f0;
+    }
+
+    &__left-title,
+    &__right-title{
+        width: 280px;
+        height: 30px;
+        line-height: 30px;
+        border-bottom: 1px solid #f0f0f0;
+        color: #4f4f4f;
+        font-weight: 500;
+    }
+
+    &__friend{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 60px;
+    }
+
+    &__friend-img{
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-image: url('../img/content/temp.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    &__friend-name{
+        margin-left: 6px;
+        color: #4f4f4f;
+        font-weight: 500;
+    }
+
+    &__friend-btn,
+    &__friend-removebtn{
+        margin-left: auto;
+    }
+
+    &__friend-removebtn{
+        margin-right: 14px;
+
+        &:before,
+        &:after{
+            background-color: #c4c4c4;
+        }
+    }
+
+    &__footer{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+        background-color: #f0f0f0;
+    }
+
+    &__footer-save{
+        width: 87px;
+        height: 30px;
+        margin-right: 7px;
+        line-height: 30px;
+        color: #fff;
+        background-color: #ff8663;
+        border-radius: 10px;
+        text-align: center;
+    }
+}

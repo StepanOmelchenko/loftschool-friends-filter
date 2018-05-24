@@ -10,12 +10,23 @@ body{
     height: 100%;
 }
 
+html{
+    font-size: 12px;
+}
+
 ul{
     list-style-type: none;
 }
 
 a{
     display: inline-block;
+    color: inherit;
+    text-decoration: none;
+}
+
+input{
+    outline: none;
+    border: none;
 }
 
 .wrapper{
@@ -35,41 +46,5 @@ a{
     transform: translate(-50%, -40%);
     background-color: #fff;
     border-radius: 10px;
-}
-
-.friends{
-    display: flex;
-    flex-direction: column;
-
-    &__header{
-        width: 100%;
-        height: max-content;
-    }
-
-    &__main{
-        width: 100%;
-        flex: 1;
-        display: flex;
-    }
-
-    &__left,
-    &__right{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        height: 100%;
-        border: 1px solid black;
-        overflow: hidden;
-    }
-
-    &__friend{
-        width: 100%;
-        height: 100px;
-        border: 1px solid grey;
-    }
-
-    &__footer{
-        width: 100%;
-        height: 50px;
-    }
+    overflow: hidden;
 }

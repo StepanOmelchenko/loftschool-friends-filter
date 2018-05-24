@@ -11,13 +11,30 @@ html(lang=en)
         .wrapper
             .container.friends
                 header.friends__header
-                    h1.friends__title Другофильтр
+                    h1.friends__title Выберите друзей
+                    a.friends__taskbar-closebtn.closebtn(href="#")
+                .friends__taskbar
+                    input.friends__taskbar-input(type="text" placeholder="Начните вводить имя друга")
+                    input.friends__taskbar-input(type="text" placeholder="Название")
                 main.friends__main
                     .friends__left
-                        .friends__friend Павел
-                        .friends__friend Снежок
-                        .friends__friend Воля
+                        .friends__left-title Ваши друзья
+                        .friends__left-container
+                            .friends__friend
+                                .friends__friend-img
+                                .friends__friend-name Павел
+                                .friends__friend-btn X
+                            .friends__friend
+                                .friends__friend-img
+                                .friends__friend-name Снежок
+                                .friends__friend-btn X
                     .friends__right
-                        .friends__friend Справа
+                        .friends__right-title Друзья в списке
+                        .friends__right-container
+                            .friends__friend
+                                .friends__friend-img
+                                .friends__friend-name Воля
+                                a.friends__friend-removebtn.closebtn(href="#")
                 footer.friends__footer
+                    a.friends__footer-save(href="#") Сохранить
     script(src="bundle.js")
