@@ -21,21 +21,27 @@ html(lang=en)
                 main.friends__main
                     .friends__left
                         .friends__left-title Ваши друзья
-                        .friends__left-container
+                        .friends__left-container#left-container
                             .friends__friend
                                 .friends__friend-img
-                                .friends__friend-name Павел
-                                a.friends__friend-btn.plusbtn(href="#")
-                            .friends__friend
-                                .friends__friend-img
-                                .friends__friend-name Снежок
+                                .friends__friend-name У тебя нет друзей
                                 a.friends__friend-btn.plusbtn(href="#")
                     .friends__right
                         .friends__right-title Друзья в списке
                         .friends__right-container
                             .friends__friend
                                 .friends__friend-img
-                                .friends__friend-name Воля
+                                .friends__friend-name Тащи друзей сюда
                                 a.friends__friend-removebtn.closebtn(href="#")
                 footer.friends__footer
                     a.friends__footer-save(href="#") Сохранить
+        script#friend-template(type="text/friend-template")
+            .friends__friend
+                .friends__friend-img
+                .friends__friend-name
+                a.friends__friend-btn.plusbtn(href="#")
+        script#friend-moved-template(type="text/friend-template")
+            .friends__friend
+                .friends__friend-img
+                .friends__friend-name
+                a.friends__friend-removebtn.closebtn(href="#")   
