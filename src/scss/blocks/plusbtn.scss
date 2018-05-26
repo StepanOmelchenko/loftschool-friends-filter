@@ -1,0 +1,26 @@
+.plusbtn{
+    position: relative;
+    width: 14px;
+    height: 14px;
+
+    &:before,
+    &:after{
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;            
+        width: 20px;
+        height: 5px;
+        border-radius: 3px;
+        transform-origin: center;
+    }
+
+    &:before{
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    &:after{
+        transform: translate(-50%, -50%) rotate(180deg);
+    }
+}

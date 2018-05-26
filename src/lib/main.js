@@ -28,10 +28,14 @@ function callAPI(method, params) {
     })
 }
 
-auth()
-    .then(() => {
-        return callAPI('friends.get', { fields: 'city, country, photo_100' });
-    })
-    .then(me => {
-        console.log(me);
-    });
+(async () => {
+    try {
+        await auth();
+        const friends = await callAPI('friends.get', { fields: 'photo_100' });
+        
+        console.log(friends);
+
+    } catch (error) {
+        console.log(error);
+    }
+})();

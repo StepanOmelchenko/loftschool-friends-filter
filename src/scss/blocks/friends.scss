@@ -107,6 +107,15 @@
         margin-left: auto;
     }
 
+    &__friend-btn{
+        margin-right: 10px;
+
+        &:before,
+        &:after{
+            background-color: #c4c4c4;
+        }
+    }
+
     &__friend-removebtn{
         margin-right: 14px;
 
