@@ -17,8 +17,8 @@ html(lang=en)
                     a.friends__taskbar-closebtn.closebtn(href="#")
                 .friends__taskbar
                     input.friends__taskbar-input#left-search(type="text" placeholder="Начните вводить имя друга")
-                    input.friends__taskbar-input#right-serch(type="text" placeholder="Начните вводить имя друга")
-                main.friends__main
+                    input.friends__taskbar-input#right-search(type="text" placeholder="Начните вводить имя друга")
+                main.friends__main#friends_main
                     .friends__left
                         .friends__left-title Ваши друзья
                         .friends__left-container#left-container
@@ -28,7 +28,7 @@ html(lang=en)
                                 a.friends__friend-btn.plusbtn(href="#")
                     .friends__right
                         .friends__right-title Друзья в списке
-                        .friends__right-container
+                        .friends__right-container#right-container
                             .friends__friend
                                 .friends__friend-img
                                 .friends__friend-name Тащи друзей сюда
