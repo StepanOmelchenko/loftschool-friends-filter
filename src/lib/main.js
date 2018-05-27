@@ -52,12 +52,10 @@ rightContainer.addEventListener('click', (e) => {
 
 function moveFriend(friendBtn, source, distantion) {
     console.warn('move friend to ', distantion);
-    //console.log(distantion.id);
     let friendBox = friendBtn.parentNode;
-    //console.log(friendBox);
-
     
     distantion.appendChild(friendBox);
+    changeFriendsLists(friendBox, source, distantion);
     changeButnsClassList(friendBtn, distantion);
 }
 
@@ -72,6 +70,29 @@ function changeButnsClassList(btn, distantionContainer) {
         btn.classList.remove('closebtn');
         btn.classList.add('friends__friend-btn');
         btn.classList.add('plusbtn');
+    }
+}
+
+function changeFriendsLists(friend, sourceContainer, distantionContainer) {
+    if (distantionContainer.id == 'right-container') {
+        spliceElem(friend, friendsStore.leftList, friendsStore.rightList);
+    } else if (distantionContainer.id == 'left-container') {        
+        spliceElem(friend, friendsStore.rightList, friendsStore.leftList);
+    }
+
+    function spliceElem(friendElem, sourceList, distationList) {
+        //console.log(sourceList.indexOf(friendElem));
+        let friendElemId = friendElem.dataset.id;
+        let friend = sourceList.find(hasElementId);
+        let friendElemPosition = sourceList.indexOf(friend);
+        
+        friend = sourceList.splice(friendElemPosition, 1);
+        distationList.push(friend[0]);
+        console.log(friendsStore.rightList);
+
+        function hasElementId(elem) {
+            return elem.id == friendElemId
+        }
     }
 }
 
