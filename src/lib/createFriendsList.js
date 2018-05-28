@@ -10,7 +10,9 @@ function createFriendsList(list, container, tempFriend) {
         newFriend.querySelector('.friends__friend-img').style.backgroundImage = `url(${man.photo_100})`;
         newFriend.querySelector('.friends__friend-name').innerText = `${man.last_name} ${man.first_name}`;
         newFriend.querySelector('.friends__friend').dataset.id = man.id;
-        fragment.appendChild(newFriend);
+        newFriend.querySelector('.friends__friend').draggable = true;
+
+        fragment.appendChild(newFriend.querySelector('.friends__friend'));
     });
 
     container.innerHTML = '';

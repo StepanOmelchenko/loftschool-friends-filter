@@ -10,7 +10,7 @@ html(lang=en)
         script(src="http://vk.com/js/api/openapi.js")
         //script(src="bundle.js")
     body
-        .wrapper
+        .wrapper#friends_main
             .container.friends
                 header.friends__header
                     h1.friends__title Выберите друзей
@@ -18,7 +18,7 @@ html(lang=en)
                 .friends__taskbar
                     input.friends__taskbar-input#left-search(type="text" placeholder="Начните вводить имя друга")
                     input.friends__taskbar-input#right-search(type="text" placeholder="Начните вводить имя друга")
-                main.friends__main#friends_main
+                main.friends__main
                     .friends__left
                         .friends__left-title Ваши друзья
                         .friends__left-container#left-container
@@ -29,10 +29,6 @@ html(lang=en)
                     .friends__right
                         .friends__right-title Друзья в списке
                         .friends__right-container#right-container
-                            .friends__friend
-                                .friends__friend-img
-                                .friends__friend-name Тащи друзей сюда
-                                a.friends__friend-removebtn.closebtn(href="#")
                 footer.friends__footer
                     a.friends__footer-save(href="#") Сохранить
         script#friend-template(type="text/friend-template")

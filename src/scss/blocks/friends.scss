@@ -80,11 +80,18 @@
         font-weight: 500;
     }
 
+    &__left-container,
+    &__right-container{
+        width: 100%;
+        height: 100%;
+    }
+
     &__friend{
         display: flex;
         align-items: center;
         width: 100%;
         height: 60px;
+        cursor: move;
 
         &:hover{
             background-color: #f0f0f0;
@@ -148,5 +155,11 @@
         background-color: #ff8663;
         border-radius: 10px;
         text-align: center;
+    }
+
+    &__fantom{
+        width: 100%;
+        height: 60px;
+        background-color: orange;
     }
 }
