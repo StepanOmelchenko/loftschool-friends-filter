@@ -1,9 +1,9 @@
+import { changeButnsClassList } from './moveFriendFuncs';
+
 function makeDnd(zones, mainContainer) {
     let currentDrag;
-    //console.log(mainContainer);
 
     mainContainer.addEventListener('dragend', (e) => {
-        //console.log('from drop in MC');
         if (currentDrag) {
             if (currentDrag.fantom) {
                 currentDrag.fantom = destroyElemSlowly(currentDrag.fantom);
@@ -18,7 +18,8 @@ function makeDnd(zones, mainContainer) {
                 overPosition: '',
                 lastOverPosition: '',
                 fantom: null,
-                belowItem: null
+                belowItem: null,
+                home: zone
             };
         });
   
@@ -59,14 +60,6 @@ function makeDnd(zones, mainContainer) {
                 currentDrag.belowItem = e.target;
             }
         });
-
-        /* zone.addEventListener('dragleave', (e) => {
-            e.preventDefault();
-            if (e.target.classList.contains('item')) {
-                currentDrag.overPosition = null;
-                currentDrag.lastOverPosition = null;
-             }
-          }); */
     
         zone.addEventListener('drop', (e) => {
             e.preventDefault();
@@ -83,7 +76,7 @@ function makeDnd(zones, mainContainer) {
                     destroyElemSlowly(currentDrag.fantom);
                 }
 
-                putItemToZone(currentDrag.node, e.target, dropPosition, zone);
+                putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home);
                 currentDrag = null;
             }
         });
@@ -136,8 +129,8 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
     }
 }
   
-function putItemToZone(dragItem, targetItem, position, zone) {
-    //console.log(targetItem, zone);
+function putItemToZone(dragItem, targetItem, position, zone, homeZone) {    
+    //console.log(targetItem);
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else if (position === 'before') {
@@ -146,9 +139,17 @@ function putItemToZone(dragItem, targetItem, position, zone) {
         if (targetItem.nextElementSibling) {
             zone.insertBefore(dragItem, targetItem.nextElementSibling);
         } else {
-            //zone.insertBefore(dragItem, zone.lastElementChild);
             zone.appendChild(dragItem);
         }       
+    }
+
+    if (!dragItem.classList.contains('friends__fantom')) {        
+
+        if (homeZone != zone) {
+            let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
+
+            changeButnsClassList(dragItemBtn, zone);
+        }        
     }
 }
 
