@@ -14,24 +14,47 @@ function changeButnsClassList(btn, distantionContainer) {
 
 function changeFriendsLists(friend, sourceContainer, distantionContainer, friendsStore) {
     if (distantionContainer.id == 'right-container') {
-        spliceElem(friend, friendsStore.leftList, friendsStore.rightList);
+        putElemToTheEndOfArray(friend, friendsStore.leftList, friendsStore.rightList);
     } else if (distantionContainer.id == 'left-container') {        
-        spliceElem(friend, friendsStore.rightList, friendsStore.leftList);
-    }
+        putElemToTheEndOfArray(friend, friendsStore.rightList, friendsStore.leftList);
+    }    
+}
 
-    function spliceElem(friendElem, sourceList, distationList) {
-        let friendElemId = friendElem.dataset.id;
-        let friend = sourceList.find(hasElementId);
-        let friendElemPosition = sourceList.indexOf(friend);
-        
+function putElemToTheEndOfArray(friendElem, sourceList, distationList) {
+    let friendElemId = friendElem.dataset.id;
+    let friend = sourceList.find(hasElementId);
+    let friendElemPosition = sourceList.indexOf(friend);
+    /* let friendElemPosition = findElemPositionInArray(friendElem, sourceList);        
+    let friend = sourceList.splice(friendElemPosition, 1); */
+    
+    /* if (!friend[0]) {
+        console.warn('putElemToTheEndOfArray: no elem ', friend)
+    } else { */
         friend = sourceList.splice(friendElemPosition, 1);
         distationList.push(friend[0]);
 
-        function hasElementId(elem) {
-            return elem.id == friendElemId
-        }
+        console.log(distationList);
+   /*  } */        
+
+    function hasElementId(elem) {
+        return elem.id == friendElemId;
     }
 }
+
+/* function findElemPositionInArray(elemNode, array) {
+    let elemNodeId = elemNode.dataset.id;
+    let elem = array.find((item, elemNodeId) => {
+        if (!item) { // lost array
+            console.warn('findElemPositionInArray: array lost ', array);
+
+            return false;
+        }
+
+        return item.id == elemNodeId;
+    });
+
+    return array.indexOf(elem);
+} */
 
 export {
     changeButnsClassList,

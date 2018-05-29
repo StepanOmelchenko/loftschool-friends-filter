@@ -1,6 +1,6 @@
-import { changeButnsClassList } from './moveFriendFuncs';
+import { changeButnsClassList, changeFriendsLists } from './moveFriendFuncs';
 
-function makeDnd(zones, mainContainer) {
+function makeDnd(zones, mainContainer, friendsStore) {
     let currentDrag;
 
     mainContainer.addEventListener('dragend', (e) => {
@@ -76,7 +76,7 @@ function makeDnd(zones, mainContainer) {
                     destroyElemSlowly(currentDrag.fantom);
                 }
 
-                putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home);
+                putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home, friendsStore);
                 currentDrag = null;
             }
         });
@@ -129,27 +129,36 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
     }
 }
   
-function putItemToZone(dragItem, targetItem, position, zone, homeZone) {    
+function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore) {    
     //console.log(targetItem);
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else if (position === 'before') {
         zone.insertBefore(dragItem, targetItem);
+    } else if (targetItem.nextElementSibling) {
+        zone.insertBefore(dragItem, targetItem.nextElementSibling);
     } else {
-        if (targetItem.nextElementSibling) {
-            zone.insertBefore(dragItem, targetItem.nextElementSibling);
-        } else {
-            zone.appendChild(dragItem);
-        }       
+        zone.appendChild(dragItem);
     }
 
-    if (!dragItem.classList.contains('friends__fantom')) {        
+    if (homeZone != zone) {
+        let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
 
-        if (homeZone != zone) {
-            let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
-
+        if (dragItemBtn) {
+            //console.log(targetItem);
             changeButnsClassList(dragItemBtn, zone);
-        }        
+        }
+
+        changeFriendsLists(dragItem, homeZone, zone, friendsStore);
+        
+        /* if (homeZone.id == 'left-container') {
+            changeFriendsLists(dragItem, friendsStore.leftList, friendsStore.rightList);
+        }
+        if (homeZone.id == 'right-container') {
+            changeFriendsLists(dragItem, friendsStore.rightList, friendsStore.leftList);
+        } */
+
+        console.log(friendsStore);
     }
 }
 
