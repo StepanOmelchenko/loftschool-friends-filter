@@ -49,13 +49,27 @@ rightContainer.addEventListener('click', (e) => {
 
 (async () => {
     try {
-        await auth();
-        const friends = await callAPI('friends.get', { fields: 'photo_100' });
-        //console.log(friends.items);
-        friendsStore.allFriends = friends.items;
-        friendsStore.leftList = friends.items;
+        let friends = {};
+
+        if (JSON.parse(localStorage.friendsStore)) {
+            console.log(JSON.parse(localStorage.friendsStore));
+            friends = JSON.parse(localStorage.friendsStore);
+
+            friendsStore.allFriends = friends.allFriends;
+            friendsStore.leftList = friends.leftList;
+            friendsStore.rightList = friends.rightList;
+        } else {
+            await auth();        
+            friends = await callAPI('friends.get', { fields: 'photo_100' });
+
+            friendsStore.allFriends = friends.items;
+            friendsStore.leftList = friends.items;
+            friendsStore.rightList = [];
+        }        
+        //console.log(friends.items);        
 
         await createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
+        await createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);
         await makeDnd([leftContainer, rightContainer], mainContainer, friendsStore);
 
     } catch (error) {
