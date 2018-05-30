@@ -11,12 +11,21 @@ const leftContainer = document.querySelector('#left-container');
 const rightContainer = document.querySelector('#right-container');
 const tempLeftFriend = document.querySelector('#friend-template').innerHTML;
 const tempRightFriend = document.querySelector('#friend-moved-template').innerHTML;
+const saveBtn = document.querySelector('#save-btn');
+const storage = localStorage;
 
 const friendsStore = {
     allFriends: [],
     leftList: [],
     rightList: []
 };
+
+saveBtn.addEventListener('click', (e) => {
+    let store = JSON.stringify(friendsStore);
+
+    storage.setItem('friendsStore', store);
+    console.log(JSON.parse(localStorage.friendsStore));
+});
 
 leftSearchInput.addEventListener('input', (e) => {
     friendsFilter(e, friendsStore.leftList, leftContainer, tempLeftFriend);

@@ -7,7 +7,6 @@ function isMatching(word, chunk) {
 }
 
 function friendsFilter(e, friendsList, container, tempFriend) {
-    //console.log(e.target.value);
     let newFriendsList = [];
     let chunk = e.target.value;
 
