@@ -12,6 +12,7 @@ const rightContainer = document.querySelector('#right-container');
 const tempLeftFriend = document.querySelector('#friend-template').innerHTML;
 const tempRightFriend = document.querySelector('#friend-moved-template').innerHTML;
 const saveBtn = document.querySelector('#save-btn');
+const removeStore = document.querySelector('#remove-store');
 const storage = localStorage;
 
 const friendsStore = {
@@ -27,6 +28,12 @@ saveBtn.addEventListener('click', (e) => {
     console.log(JSON.parse(localStorage.friendsStore));
 });
 
+removeStore.addEventListener('click', (e) => {
+    e.preventDefault();
+    storage.removeItem('friendsStore');
+    window.alert('Локальное хранилище очищено');
+});
+
 leftSearchInput.addEventListener('input', (e) => {
     let chunk = e.target.value;
 
@@ -38,6 +45,8 @@ rightSearchInput.addEventListener('input', (e) => {
 
     friendsFilter(chunk, friendsStore.rightList, rightContainer, tempRightFriend);
 });
+
+
 
 leftContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('friends__friend-btn')) {
@@ -55,22 +64,22 @@ rightContainer.addEventListener('click', (e) => {
     try {
         let friends = {};
 
-        if (JSON.parse(localStorage.friendsStore)) {
+        if (localStorage.friendsStore) {
             console.log(JSON.parse(localStorage.friendsStore));
             friends = JSON.parse(localStorage.friendsStore);
 
-            friendsStore.allFriends = friends.allFriends;
-            friendsStore.leftList = friends.leftList;
-            friendsStore.rightList = friends.rightList;
+            friendsStore.allFriends = [...friends.allFriends];
+            friendsStore.leftList = [...friends.leftList];
+            friendsStore.rightList = [...friends.rightList];
         } else {
             await auth();        
             friends = await callAPI('friends.get', { fields: 'photo_100' });
 
-            friendsStore.allFriends = friends.items;
-            friendsStore.leftList = friends.items;
+            friendsStore.allFriends = [...friends.items];
+            friendsStore.leftList = [...friends.items];
             friendsStore.rightList = [];
         }        
-        //console.log(friends.items);        
+        console.log(friends.items);        
 
         await createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
         await createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);

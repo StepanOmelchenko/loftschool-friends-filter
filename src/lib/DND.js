@@ -36,8 +36,10 @@ function makeDnd(zones, mainContainer, friendsStore) {
                     }
                 currentDrag.fantom = createFantomItem();
         
-                currentDrag.lastOverPosition = currentDrag.overPosition;       
-                putItemToZone(currentDrag.fantom, e.target, currentDrag.overPosition, zone);
+                currentDrag.lastOverPosition = currentDrag.overPosition;
+                
+                console.log('dragover ', friendsStore);
+                putItemToZone(currentDrag.fantom, e.target, currentDrag.overPosition, zone, friendsStore);
                 }
             }     
         });
@@ -75,7 +77,7 @@ function makeDnd(zones, mainContainer, friendsStore) {
                 if (currentDrag.fantom) {
                     destroyElemSlowly(currentDrag.fantom);
                 }
-
+                console.log('drop ', friendsStore);
                 putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home, friendsStore);
                 currentDrag = null;
             }
@@ -148,9 +150,11 @@ function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsSt
             changeButnsClassList(dragItemBtn, zone);
         }
 
+        console.log('Put item ', friendsStore);
+
         changeFriendsLists(dragItem, homeZone, zone, friendsStore);
         
-        console.log(friendsStore);
+        
     }
 }
 

@@ -1,3 +1,5 @@
+import { friendsFilter } from './searchFunc';
+
 function changeButnsClassList(btn, distantionContainer) {
     if (distantionContainer.id == 'right-container') {
         btn.classList.remove('friends__friend-btn');
@@ -13,48 +15,49 @@ function changeButnsClassList(btn, distantionContainer) {
 }
 
 function changeFriendsLists(friend, sourceContainer, distantionContainer, friendsStore) {
+    let tempLeftFriend = document.querySelector('#friend-template').innerHTML;
+    let tempRightFriend = document.querySelector('#friend-moved-template').innerHTML;
+    let leftInputValue = document.querySelector('#left-search').value;
+    let rightInputValue = document.querySelector('#right-search').value;
+
     if (distantionContainer.id == 'right-container') {
-        putElemToTheEndOfArray(friend, friendsStore.leftList, friendsStore.rightList);
+        putElemToTheEndOfArray(
+                                friend,
+                                friendsStore.leftList,
+                                friendsStore.rightList,
+                                tempRightFriend,
+                                rightInputValue,
+                                distantionContainer
+                            );
     } else if (distantionContainer.id == 'left-container') {        
-        putElemToTheEndOfArray(friend, friendsStore.rightList, friendsStore.leftList);
+        putElemToTheEndOfArray(
+                                friend,
+                                friendsStore.rightList,
+                                friendsStore.leftList,
+                                tempLeftFriend,
+                                leftInputValue,
+                                distantionContainer
+                            );
     }    
 }
 
-function putElemToTheEndOfArray(friendElem, sourceList, distationList) {
+function putElemToTheEndOfArray(friendElem, sourceList, distationList, tempFriend, chunk, container) {
     let friendElemId = friendElem.dataset.id;
     let friend = sourceList.find(hasElementId);
     let friendElemPosition = sourceList.indexOf(friend);
-    /* let friendElemPosition = findElemPositionInArray(friendElem, sourceList);        
-    let friend = sourceList.splice(friendElemPosition, 1); */
-    
-    /* if (!friend[0]) {
-        console.warn('putElemToTheEndOfArray: no elem ', friend)
-    } else { */
-        friend = sourceList.splice(friendElemPosition, 1);
-        distationList.push(friend[0]);
 
-        console.log(distationList);
-   /*  } */        
+    friend = sourceList.splice(friendElemPosition, 1);
+    distationList.push(friend[0]);
+
+    if (chunk) {
+        console.log('rebuild search');
+        friendsFilter(chunk, distationList, container, tempFriend);
+    }    
 
     function hasElementId(elem) {
         return elem.id == friendElemId;
     }
 }
-
-/* function findElemPositionInArray(elemNode, array) {
-    let elemNodeId = elemNode.dataset.id;
-    let elem = array.find((item, elemNodeId) => {
-        if (!item) { // lost array
-            console.warn('findElemPositionInArray: array lost ', array);
-
-            return false;
-        }
-
-        return item.id == elemNodeId;
-    });
-
-    return array.indexOf(elem);
-} */
 
 export {
     changeButnsClassList,
