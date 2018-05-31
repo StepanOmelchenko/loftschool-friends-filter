@@ -28,11 +28,15 @@ saveBtn.addEventListener('click', (e) => {
 });
 
 leftSearchInput.addEventListener('input', (e) => {
-    friendsFilter(e, friendsStore.leftList, leftContainer, tempLeftFriend);
+    let chunk = e.target.value;
+
+    friendsFilter(chunk, friendsStore.leftList, leftContainer, tempLeftFriend);
 });
 
 rightSearchInput.addEventListener('input', (e) => {
-    friendsFilter(e, friendsStore.rightList, rightContainer, tempRightFriend);
+    let chunk = e.target.value;
+
+    friendsFilter(chunk, friendsStore.rightList, rightContainer, tempRightFriend);
 });
 
 leftContainer.addEventListener('click', (e) => {

@@ -145,19 +145,11 @@ function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsSt
         let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
 
         if (dragItemBtn) {
-            //console.log(targetItem);
             changeButnsClassList(dragItemBtn, zone);
         }
 
         changeFriendsLists(dragItem, homeZone, zone, friendsStore);
         
-        /* if (homeZone.id == 'left-container') {
-            changeFriendsLists(dragItem, friendsStore.leftList, friendsStore.rightList);
-        }
-        if (homeZone.id == 'right-container') {
-            changeFriendsLists(dragItem, friendsStore.rightList, friendsStore.leftList);
-        } */
-
         console.log(friendsStore);
     }
 }

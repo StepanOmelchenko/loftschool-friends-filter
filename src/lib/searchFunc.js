@@ -6,9 +6,8 @@ function isMatching(word, chunk) {
     return regExp.test(word);
 }
 
-function friendsFilter(e, friendsList, container, tempFriend) {
+function friendsFilter(chunk, friendsList, container, tempFriend) {
     let newFriendsList = [];
-    let chunk = e.target.value;
 
     friendsList.forEach(friend => {
         if (isMatching(friend.first_name, chunk) || isMatching(friend.last_name, chunk)) {
