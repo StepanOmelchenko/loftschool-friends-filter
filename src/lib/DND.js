@@ -34,12 +34,10 @@ function makeDnd(zones, mainContainer, friendsStore) {
                     if (currentDrag.fantom) {
                         currentDrag.fantom = destroyElemSlowly(currentDrag.fantom);
                     }
-                currentDrag.fantom = createFantomItem();
-        
-                currentDrag.lastOverPosition = currentDrag.overPosition;
-                
-                console.log('dragover ', friendsStore);
-                putItemToZone(currentDrag.fantom, e.target, currentDrag.overPosition, zone, friendsStore);
+
+                    currentDrag.fantom = createFantomItem();            
+                    currentDrag.lastOverPosition = currentDrag.overPosition;                    
+                    putItemToZone(currentDrag.fantom, e.target, currentDrag.overPosition, zone, friendsStore);
                 }
             }     
         });
@@ -77,7 +75,7 @@ function makeDnd(zones, mainContainer, friendsStore) {
                 if (currentDrag.fantom) {
                     destroyElemSlowly(currentDrag.fantom);
                 }
-                console.log('drop ', friendsStore);
+
                 putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home, friendsStore);
                 currentDrag = null;
             }
@@ -131,8 +129,7 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
     }
 }
   
-function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore) {    
-    //console.log(targetItem);
+function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore) {  
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else if (position === 'before') {
@@ -148,13 +145,8 @@ function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsSt
 
         if (dragItemBtn) {
             changeButnsClassList(dragItemBtn, zone);
-        }
-
-        console.log('Put item ', friendsStore);
-
-        changeFriendsLists(dragItem, homeZone, zone, friendsStore);
-        
-        
+            changeFriendsLists(dragItem, homeZone, zone, friendsStore);
+        }     
     }
 }
 

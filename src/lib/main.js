@@ -25,7 +25,6 @@ saveBtn.addEventListener('click', (e) => {
     let store = JSON.stringify(friendsStore);
 
     storage.setItem('friendsStore', store);
-    console.log(JSON.parse(localStorage.friendsStore));
 });
 
 removeStore.addEventListener('click', (e) => {
@@ -79,7 +78,6 @@ rightContainer.addEventListener('click', (e) => {
             friendsStore.leftList = [...friends.items];
             friendsStore.rightList = [];
         }        
-        console.log(friends.items);        
 
         await createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
         await createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);

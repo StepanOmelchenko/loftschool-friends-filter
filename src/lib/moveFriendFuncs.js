@@ -50,7 +50,6 @@ function putElemToTheEndOfArray(friendElem, sourceList, distationList, tempFrien
     distationList.push(friend[0]);
 
     if (chunk) {
-        console.log('rebuild search');
         friendsFilter(chunk, distationList, container, tempFriend);
     }    
 
