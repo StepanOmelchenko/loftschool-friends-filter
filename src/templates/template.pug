@@ -22,16 +22,17 @@ html(lang=en)
                     .friends__taskbar
                         input.friends__taskbar-input#left-search(type="text" placeholder="Начните вводить имя друга")
                         input.friends__taskbar-input#right-search(type="text" placeholder="Начните вводить имя друга")
-                    main.friends__main
-                        .friends__left
+                    .friends__titles
                             .friends__left-title Ваши друзья
+                            .friends__right-title Друзья в списке
+                    main.friends__main                        
+                        .friends__left
                             .friends__left-container#left-container
                                 .friends__friend
                                     .friends__friend-img
                                     .friends__friend-name У тебя нет друзей
                                     a.friends__friend-btn.plusbtn(href="#")
                         .friends__right
-                            .friends__right-title Друзья в списке
                             .friends__right-container#right-container
                     footer.friends__footer
                         a.friends__footer-save#save-btn(href="#") Сохранить

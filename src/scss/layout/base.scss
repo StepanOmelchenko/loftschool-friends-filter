@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+*::selection {
+    background: transparent;
+ }
+
 html,
 body{
     width: 100%;

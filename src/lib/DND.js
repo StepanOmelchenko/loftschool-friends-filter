@@ -150,21 +150,29 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
 }
   
 function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore, belowItem) {
-    //console.log('targetitem ', targetItem);
-    if (!targetItem.classList.contains('friends__fantom')) {
+    console.log('targetitem ', targetItem);
+    /* if (!targetItem.classList.contains('friends__fantom')) {
         while (!targetItem.classList.contains('friends__friend')) {
             targetItem = targetItem.parentNode;
         }
-    }    
+    }  */   
 
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
-    } else if (position === 'before') {
-        zone.insertBefore(dragItem, targetItem);
-    } else if (targetItem.nextElementSibling && position === 'after') {
-        zone.insertBefore(dragItem, targetItem.nextElementSibling);
-    } else {
-        zone.appendChild(dragItem);
+    } else { 
+        if (!targetItem.classList.contains('friends__fantom')) {
+            while (!targetItem.classList.contains('friends__friend')) {
+                targetItem = targetItem.parentNode;
+            }
+        } 
+        
+        if (position === 'before') {
+            zone.insertBefore(dragItem, targetItem);
+        } else if (targetItem.nextElementSibling && position === 'after') {
+            zone.insertBefore(dragItem, targetItem.nextElementSibling);
+        } else {
+            zone.appendChild(dragItem);
+        }
     }
 
     if (homeZone != zone) {

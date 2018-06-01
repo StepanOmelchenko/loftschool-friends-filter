@@ -21,6 +21,12 @@ const friendsStore = {
     rightList: []
 };
 
+document.addEventListener('dragstart', (e) => {
+    if (!e.target.classList.contains('friends__friend')) {
+        e.preventDefault();
+    }
+});
+
 saveBtn.addEventListener('click', (e) => {
     e.preventDefault();
     let store = JSON.stringify(friendsStore);
@@ -93,7 +99,7 @@ rightContainer.addEventListener('click', (e) => {
 function moveFriend(friendBtn, source, distantion) {
     let friendNode = friendBtn.parentNode;
     
-    distantion.appendChild(friendBox);
+    distantion.appendChild(friendNode);
     changeFriendsLists(friendNode, source, distantion, friendsStore);
     changeButnsClassList(friendBtn, distantion);
 }
