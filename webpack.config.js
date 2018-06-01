@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: './lib/bundle.js'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -52,7 +52,9 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    name: '../img/[name].[ext]?[hash]'
+                    name: '[name].[ext]?[hash]',
+                    outputPath: 'img/',
+                    publicPath: '../img/'
                 }
             },
             {
@@ -61,30 +63,16 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: '../fonts/'
+                        outputPath: 'fonts/',
+                        publicPath: '../fonts/'
                     }
                 }]
             }
         ]
     },
     devServer: {
-        historyApiFallback: true,
-        noInfo: false,
-        overlay: true,
-        open: false
-    }
+        compress: true,
+        port: 3000,
+        historyApiFallback: true
+    }  
 };
-
-if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map';
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            "process.env": {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
-    ]);
-}
