@@ -21,6 +21,10 @@ const friendsStore = {
     rightList: []
 };
 
+document.onselectstart = (e) => {
+    e.preventDefault();
+};
+
 document.addEventListener('dragstart', (e) => {
     if (!e.target.classList.contains('friends__friend')) {
         e.preventDefault();

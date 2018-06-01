@@ -127,8 +127,12 @@ function destroyElemSlowly(elem, duration = 10) {
             } else {
                 const progress = 1/duration * (duration - timesLeft);
                 const nextPoint = elemHeight - elemHeight * progress;
-                elem.style.height = nextPoint + 'px';
-                requestAnimationFrame(destroyHeight);
+                if (elem) {
+                    elem.style.height = nextPoint + 'px';
+                    requestAnimationFrame(destroyHeight);
+                } else {
+                    resolve(elem);
+                }                
             }
         }
       
@@ -150,12 +154,6 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
 }
   
 function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore, belowItem) {
-    console.log('targetitem ', targetItem);
-    /* if (!targetItem.classList.contains('friends__fantom')) {
-        while (!targetItem.classList.contains('friends__friend')) {
-            targetItem = targetItem.parentNode;
-        }
-    }  */   
 
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
