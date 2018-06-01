@@ -22,6 +22,7 @@ const friendsStore = {
 };
 
 saveBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     let store = JSON.stringify(friendsStore);
 
     storage.setItem('friendsStore', store);
@@ -48,12 +49,14 @@ rightSearchInput.addEventListener('input', (e) => {
 
 
 leftContainer.addEventListener('click', (e) => {
+    e.preventDefault();
     if (e.target.classList.contains('friends__friend-btn')) {
         moveFriend(e.target, leftContainer, rightContainer);
     }
 }, true);
 
 rightContainer.addEventListener('click', (e) => {
+    e.preventDefault();
     if (e.target.classList.contains('friends__friend-removebtn')) {
         moveFriend(e.target, rightContainer, leftContainer);
     }
@@ -64,7 +67,6 @@ rightContainer.addEventListener('click', (e) => {
         let friends = {};
 
         if (localStorage.friendsStore) {
-            console.log(JSON.parse(localStorage.friendsStore));
             friends = JSON.parse(localStorage.friendsStore);
 
             friendsStore.allFriends = [...friends.allFriends];
@@ -78,7 +80,7 @@ rightContainer.addEventListener('click', (e) => {
             friendsStore.leftList = [...friends.items];
             friendsStore.rightList = [];
         }        
-
+        console.log(friendsStore);
         await createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
         await createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);
         await makeDnd([leftContainer, rightContainer], mainContainer, friendsStore);
@@ -89,9 +91,9 @@ rightContainer.addEventListener('click', (e) => {
 })();
 
 function moveFriend(friendBtn, source, distantion) {
-    let friendBox = friendBtn.parentNode;
+    let friendNode = friendBtn.parentNode;
     
     distantion.appendChild(friendBox);
-    changeFriendsLists(friendBox, source, distantion, friendsStore);
+    changeFriendsLists(friendNode, source, distantion, friendsStore);
     changeButnsClassList(friendBtn, distantion);
 }

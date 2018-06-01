@@ -43,18 +43,25 @@ function changeFriendsLists(friend, sourceContainer, distantionContainer, friend
 
 function putElemToTheEndOfArray(friendElem, sourceList, distationList, tempFriend, chunk, container) {
     let friendElemId = friendElem.dataset.id;
-    let friend = sourceList.find(hasElementId);
-    let friendElemPosition = sourceList.indexOf(friend);
+    let friendElemPosition = null;
+    let friend = sourceList.find(hasElementId);    
 
-    friend = sourceList.splice(friendElemPosition, 1);
-    distationList.push(friend[0]);
+    if (friendElemPosition) {
+        friend = sourceList.splice(friendElemPosition, 1);
+        distationList.push(friend[0]);
 
-    if (chunk) {
-        friendsFilter(chunk, distationList, container, tempFriend);
-    }    
+        if (chunk) {
+            friendsFilter(chunk, distationList, container, tempFriend);
+        }  
+    }      
 
-    function hasElementId(elem) {
-        return elem.id == friendElemId;
+    function hasElementId(elem, index) {
+        if (elem.id == friendElemId) {
+            friendElemPosition = index;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

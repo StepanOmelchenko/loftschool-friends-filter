@@ -37,7 +37,14 @@ function makeDnd(zones, mainContainer, friendsStore) {
 
                     currentDrag.fantom = createFantomItem();            
                     currentDrag.lastOverPosition = currentDrag.overPosition;                    
-                    putItemToZone(currentDrag.fantom, e.target, currentDrag.overPosition, zone, friendsStore);
+                    putItemToZone(
+                                    currentDrag.fantom,
+                                    e.target,
+                                    currentDrag.overPosition,
+                                    zone,
+                                    friendsStore,
+                                    currentDrag.belowItem
+                                );
                 }
             }     
         });
@@ -67,18 +74,31 @@ function makeDnd(zones, mainContainer, friendsStore) {
             let dropPointY = e.offsetY;
             let dropPosition = checkDropItemPosition(targetHeight, dropPointY);
             
-            if (currentDrag.belowItem) {
+            /* if (currentDrag.belowItem) {
                 currentDrag.belowItem = null;
-            }  
+            } */  
         
             if (currentDrag) {
+                
+                putItemToZone(
+                                currentDrag.node,
+                                e.target,
+                                dropPosition,
+                                zone,
+                                currentDrag.home,
+                                friendsStore,
+                                currentDrag.belowItem
+                            );
+
                 if (currentDrag.fantom) {
                     destroyElemSlowly(currentDrag.fantom);
                 }
-
-                putItemToZone(currentDrag.node, e.target, dropPosition, zone, currentDrag.home, friendsStore);
                 currentDrag = null;
             }
+
+            /* if (currentDrag.belowItem) {
+                currentDrag.belowItem = null;
+            } */
         });
     });
 }
@@ -129,12 +149,19 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
     }
 }
   
-function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore) {  
+function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore, belowItem) {
+    //console.log('targetitem ', targetItem);
+    if (!targetItem.classList.contains('friends__fantom')) {
+        while (!targetItem.classList.contains('friends__friend')) {
+            targetItem = targetItem.parentNode;
+        }
+    }    
+
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else if (position === 'before') {
         zone.insertBefore(dragItem, targetItem);
-    } else if (targetItem.nextElementSibling) {
+    } else if (targetItem.nextElementSibling && position === 'after') {
         zone.insertBefore(dragItem, targetItem.nextElementSibling);
     } else {
         zone.appendChild(dragItem);
@@ -144,6 +171,7 @@ function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsSt
         let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
 
         if (dragItemBtn) {
+            console.log('target ', belowItem);
             changeButnsClassList(dragItemBtn, zone);
             changeFriendsLists(dragItem, homeZone, zone, friendsStore);
         }     
