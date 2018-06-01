@@ -43,10 +43,10 @@ function changeFriendsLists(friend, sourceContainer, distantionContainer, friend
 
 function putElemToTheEndOfArray(friendElem, sourceList, distationList, tempFriend, chunk, container) {
     let friendElemId = friendElem.dataset.id;
-    let friendElemPosition = null;
+    let friendElemPosition = -1;
     let friend = sourceList.find(hasElementId);    
 
-    if (friendElemPosition) {
+    if (friendElemPosition >= 0) {
         friend = sourceList.splice(friendElemPosition, 1);
         distationList.push(friend[0]);
 

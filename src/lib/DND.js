@@ -131,7 +131,7 @@ function destroyElemSlowly(elem, duration = 10) {
                     elem.style.height = nextPoint + 'px';
                     requestAnimationFrame(destroyHeight);
                 } else {
-                    resolve(elem);
+                    reject();
                 }                
             }
         }
@@ -154,7 +154,6 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
 }
   
 function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore, belowItem) {
-
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else { 
@@ -177,7 +176,6 @@ function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsSt
         let dragItemBtn = dragItem.querySelector('.plusbtn') || dragItem.querySelector('.closebtn');
 
         if (dragItemBtn) {
-            console.log('target ', belowItem);
             changeButnsClassList(dragItemBtn, zone);
             changeFriendsLists(dragItem, homeZone, zone, friendsStore);
         }     
