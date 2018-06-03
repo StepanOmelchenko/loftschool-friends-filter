@@ -19,14 +19,7 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: 'file-loader',
-                        options: {
-                            name: '[name].css',
-                            outputPath: '/css'
-                        }
-                    },
-                    {
-                        loader: 'extract-loader'
+                        loader: 'style-loader'
                     },
                     {
                         loader: 'css-loader',
@@ -53,8 +46,7 @@ module.exports = {
                 loader: 'file-loader',
                 options: {
                     name: '[name].[ext]?[hash]',
-                    outputPath: 'img/',
-                    publicPath: '../img/'
+                    outputPath: 'img/'
                 }
             },
             {
@@ -63,15 +55,14 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: 'fonts/',
-                        publicPath: '../fonts/'
+                        outputPath: 'fonts/'
                     }
                 }]
             }
         ]
     },
     devServer: {
-        contentBase: path.join(__dirname, "dist"),
+        contentBase: path.join(__dirname, "src"),
         compress: true,
         port: 9000
     }  

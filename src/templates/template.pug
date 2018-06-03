@@ -6,9 +6,7 @@ html(lang=en)
         meta(content="width=device-width, initial-scale=1" name="viewport")
         meta(http-equiv="X-UA-Compatible" content="ie=edge")
         title Friends Filter
-        link(rel="stylesheet" href="css/main.css" type="text/css")
         script(src="http://vk.com/js/api/openapi.js")
-        //script(src="bundle.js")
     body
         .wrapper#friends_main
             .container
@@ -27,22 +25,22 @@ html(lang=en)
                             .friends__right-title Друзья в списке
                     main.friends__main                        
                         .friends__left
-                            .friends__left-container#left-container
+                            ul.friends__left-container#left-container
                                 .friends__friend
                                     .friends__friend-img
                                     .friends__friend-name У тебя нет друзей
                                     a.friends__friend-btn.plusbtn(href="#")
                         .friends__right
-                            .friends__right-container#right-container
+                            ul.friends__right-container#right-container
                     footer.friends__footer
                         a.friends__footer-save#save-btn(href="#") Сохранить
         script#friend-template(type="text/friend-template")
-            .friends__friend
+            li.friends__friend
                 .friends__friend-img
                 .friends__friend-name
                 a.friends__friend-btn.plusbtn(href="#")
         script#friend-moved-template(type="text/friend-template")
-            .friends__friend
+            li.friends__friend
                 .friends__friend-img
                 .friends__friend-name
                 a.friends__friend-removebtn.closebtn(href="#")   
