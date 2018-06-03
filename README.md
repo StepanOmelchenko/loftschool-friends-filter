@@ -1,6 +1,6 @@
-Friends Filter repo
-Loftschool, javascript course
-Stepan Omelchenko
+## Friends Filter
+## Loftschool javascript course.
+## Stepan Omelchenko
 
 1. clone this repo
 2. npm i

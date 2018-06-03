@@ -91,9 +91,9 @@ rightContainer.addEventListener('click', (e) => {
             friendsStore.rightList = [];
         }
         
-        await createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
-        await createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);
-        await makeDnd([leftContainer, rightContainer], mainContainer, friendsStore);
+        createFriendsList(friendsStore.leftList, leftContainer, tempLeftFriend);
+        createFriendsList(friendsStore.rightList, rightContainer, tempRightFriend);
+        makeDnd([leftContainer, rightContainer], mainContainer, friendsStore);
 
     } catch (error) {
         console.log(error);
