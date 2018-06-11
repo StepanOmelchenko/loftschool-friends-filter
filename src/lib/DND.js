@@ -1,4 +1,5 @@
 import { changeButnsClassList, changeFriendsLists } from './moveFriendFuncs';
+import { createFantomItem, destroyElemSlowly } from './view.js';
 
 function makeDnd(zones, mainContainer, friendsStore) {
     let currentDrag;
@@ -73,11 +74,7 @@ function makeDnd(zones, mainContainer, friendsStore) {
             let targetHeight = e.target.offsetHeight;
             let dropPointY = e.offsetY;
             let dropPosition = checkDropItemPosition(targetHeight, dropPointY);
-            
-            /* if (currentDrag.belowItem) {
-                currentDrag.belowItem = null;
-            } */  
-        
+                    
             if (currentDrag) {
                 
                 putItemToZone(
@@ -95,57 +92,11 @@ function makeDnd(zones, mainContainer, friendsStore) {
                 }
                 currentDrag = null;
             }
-
-            /* if (currentDrag.belowItem) {
-                currentDrag.belowItem = null;
-            } */
         });
     });
 }
 
-function createFantomItem() {
-    const newDiv = document.createElement('div');
-  
-    newDiv.classList.add('friends__fantom');
-  
-    return newDiv;
-}
-  
-function destroyElemSlowly(elem, duration = 10) {
-    return new Promise((resolve, reject) => {
-        if (!elem) {
-            reject();
-        }
-        let elemHeight = elem.offsetHeight;
-        
-        function destroyHeight() {
-            const currentTime = Date.now();
-            const timesLeft = startTime + duration - currentTime;
-            
-            if (timesLeft <= 0) {
-                resolve(elem);
-            } else {
-                const progress = 1/duration * (duration - timesLeft);
-                const nextPoint = elemHeight - elemHeight * progress;
-                if (elem) {
-                    elem.style.height = nextPoint + 'px';
-                    requestAnimationFrame(destroyHeight);
-                } else {
-                    reject();
-                }                
-            }
-        }
-      
-        const startTime = Date.now();
-        requestAnimationFrame(destroyHeight);    
-    }).then((elem) => {
-            elem.remove();
-        },() => {
-            console.log('no elem');
-        });
-}
-  
-function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
+function checkDropItemPosition(targetHeight, dropPointY/* , parent,  */) {
     if (targetHeight / 2 > dropPointY) {
         return 'before';
     } else {
@@ -153,7 +104,7 @@ function checkDropItemPosition(targetHeight, dropPointY, parent, ) {
     }
 }
   
-function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore, belowItem) {
+function putItemToZone(dragItem, targetItem, position, zone, homeZone, friendsStore/* , belowItem */) {
     if (targetItem == zone && !zone.children.lenght) {
         zone.appendChild(dragItem);
     } else { 

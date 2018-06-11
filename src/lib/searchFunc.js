@@ -1,4 +1,4 @@
-import {createFriendsList} from './createFriendsList';
+import { createFriendsList } from './createFriendsList';
 
 function isMatching(word, chunk) {
     let regExp = new RegExp(chunk, 'i');
